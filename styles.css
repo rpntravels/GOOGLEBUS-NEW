@@ -1,4 +1,30 @@
 h1{
+text-align: center;
 color: #a71111;
 font-size: 20;
 }
+img{
+width: 200px;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+p{
+font-size: 16px;
+color: #ba2929;
+caption-side: top;
+text-align: center;
+font-family: Arial, sans-serif;
+padding: 20px;
+
+}
+div.box{    
+  width: 300px;  
+  padding: 10px;  
+  border: 2px solid #a71111;  
+  margin: 10px auto;  
+  text-align: center;  
+  font-family: Arial, sans-serif;  
+  font-size: 16px;  
+  color: #a71111;  
+}      
