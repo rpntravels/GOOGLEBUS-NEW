@@ -63,3 +63,9 @@ div.box{
     font-size: 20px;  
     color: #683b0e;  
 }
+div.footer{
+  text-align: center;
+  font-size: 20px;
+  color: #0e3b68;
+  padding: 10px;
+}
