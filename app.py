@@ -180,4 +180,55 @@ def dashboard():
 
 if __name__ == '__main__':
     app.run(debug=True)
+account_sid = "YOUR_ACCOUNT_SID"
+auth_token = "YOUR_AUTH_TOKEN"
+twilio_number = "YOUR_TWILIO_PHONE_NUMBER"
+from flask import Flask, render_template, request, redirect
+import sqlite3
+
+app = Flask(__name__)
+
+# Create database automatically
+def init_db():
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            age INTEGER,
+            email TEXT,
+            phone TEXT,
+            password TEXT
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+init_db()
+
+@app.route('/')
+def signup_page():
+    return render_template('signup.html')
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    name = request.form['name']
+    age = request.form['age']
+    email = request.form['email']
+    phone = request.form['phone']
+    password = request.form['password']
+
+    conn = sqlite3.connect('users.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO users (name, age, email, phone, password) VALUES (?, ?, ?, ?, ?)",
+                   (name, age, email, phone, password))
+    conn.commit()
+    conn.close()
+
+    return "Signup Successful!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+py app.py
 
